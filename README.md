@@ -57,6 +57,6 @@ Listado de páginas y módulos que implementan:
 ## 📩 Enlaces de entrega
 - 🔗 **Entrega en Figma**: https://www.figma.com/design/DkwGA2emmgqss82Z8guIou/GAMECRITIC?node-id=0-1&t=JQtfGkBRzAbjUCMP-1
 - 🔗 **Entrega en Trello**: https://trello.com/invite/b/67aa3df6210842587ec98b36/ATTI57a6ee6d58a7cc6ab367d233a96c1eed379ED907/pwm
-- 🔗 **Entrega en GitHub**: https://github.com/davidmrnd/game-critic.git
+- 🔗 **Entrega en GitHub**: https://github.com/davidmrnd/game-critic/tree/sprint1
 
 ---
