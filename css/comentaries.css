@@ -10,6 +10,7 @@
     padding: 20px;
     margin: 10px 0;
     width: 100%;
+    gap: 20px;
 }
 
 .user {
@@ -82,12 +83,18 @@ a{
     color: black;
 }
 
-@media (max-width:767px){
+.styled-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 1000px;
+}
 
-    .rating {
-        font-size: 30px;
-    }
-
+#message {
+    color: #CD4D4D;
+    text-align: center;
+    margin-top: 10px;
 }
 
 @media (min-width:767px) and (max-width: 1023px) {
@@ -96,4 +103,21 @@ a{
         font-size: 40px;
     }
 
+    .styled-input {
+        width: 500px;
+    }
+}
+
+@media (max-width:767px){
+
+    .comment {
+        display: block;
+    }
+    .rating {
+        font-size: 30px;
+    }
+
+    .styled-input {
+        width: 300px;
+    }
 }
