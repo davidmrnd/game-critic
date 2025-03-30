@@ -13,7 +13,7 @@ function modifyHeader() {
                 .then(response => response.json())
                 .then(data => {
                     const user = data.users.find(user => user.id === isLoggedIn);
-                    console.log(user); console.log(isLoggedIn);
+
                     if (user && user.profileicon) {
                         iconsource.src = user.profileicon;
                     } else {
