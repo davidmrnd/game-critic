@@ -59,7 +59,7 @@ footer {
     }
 }
 
-@media (max-width: 440px) {
+@media (max-width: 767px) {
     footer {
         padding: 10px 0;
     }
