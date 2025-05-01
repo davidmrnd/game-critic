@@ -21,7 +21,7 @@ import { Firestore, doc, getDoc, updateDoc, arrayUnion, arrayRemove } from '@ang
 export class UserPageComponent implements OnInit {
   isCurrentUserProfile: boolean = false;
   viewedProfileId!: string;
-  isFollowing: boolean = false; // New property to track follow status
+  isFollowing: boolean = false;
 
   constructor(
     private authService: AuthService,

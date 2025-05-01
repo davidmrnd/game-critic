@@ -74,7 +74,7 @@ app-commentaries {
   background-color: #d32f2f;
 }
 
-/* Móviles */
+
 @media (max-width: 767px) {
   main {
     display: block;

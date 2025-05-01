@@ -15,7 +15,7 @@ export class RegistrationComponent {
   email: string = '';
   password: string = '';
   name: string = '';
-  username: string = ''; // Nuevo campo
+  username: string = '';
   errorMessage: string = '';
 
   constructor(private authService: AuthService) {}
