@@ -1,0 +1,33 @@
+<div class="comments-container">
+  <div class="comment">
+    <div class="user">
+      <img [src]="user?.profileicon" [alt]="user?.username" class="profile-image">
+      <div class="info">
+        <h3>{{ user?.username }}</h3>
+        <div class="input-stars-container">
+          <textarea
+            [(ngModel)]="commentContent"
+            placeholder="Escribe tu comentario aquí..."
+            class="comment-textarea"
+            rows="5">
+          </textarea>
+          <app-stars [(rating)]="rating" [interactive]="true"></app-stars>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="button-container">
+    <button
+      (click)="submitComment()"
+      class="submit-button">
+      {{ existingCommentId ? 'Modificar Comentario' : 'Enviar Comentario' }}
+    </button>
+    <button
+      *ngIf="existingCommentId"
+      (click)="deleteComment()"
+      class="delete-button">
+      Eliminar Comentario
+    </button>
+  </div>
+  <p *ngIf="message" class="error-message">{{ message }}</p>
+</div>

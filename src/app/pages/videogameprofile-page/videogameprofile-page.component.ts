@@ -5,6 +5,8 @@ import { DataService } from '../../services/data.service';
 import { ProfileComponent } from '../../components/profile/profile.component';
 import { StarsComponent } from '../../components/stars/stars.component';
 import { CommentariesComponent } from '../../components/commentaries/commentaries.component';
+import { AuthService } from '../../services/auth.service';
+import { Firestore, collection, query, where, getDocs } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-videogameprofile-page',
@@ -22,10 +24,14 @@ export class VideogamePageComponent implements OnInit {
   comments: any[] = [];
   averageRating: number = 0;
   videogameId!: string;
+  userId: string = '';
+  hasComment: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
-    private dataService: DataService
+    private dataService: DataService,
+    private authService: AuthService,
+    private firestore: Firestore
   ) {}
 
   ngOnInit(): void {
@@ -33,6 +39,7 @@ export class VideogamePageComponent implements OnInit {
       this.videogameId = params['id'];
       if (this.videogameId) {
         this.loadComments();
+        this.checkIfUserHasComment();
       }
     });
   }
@@ -53,4 +60,31 @@ export class VideogamePageComponent implements OnInit {
     this.averageRating = Math.round(total / this.comments.length);
   }
 
+  async checkIfUserHasComment(): Promise<void> {
+    this.authService.getCurrentUserObservable().subscribe(async (user) => {
+      if (user) {
+        this.userId = user.uid;
+
+        const commentsCollection = collection(this.firestore, 'comments');
+        const q = query(
+          commentsCollection,
+          where('userId', '==', this.userId),
+          where('videogameId', '==', this.videogameId)
+        );
+
+        const querySnapshot = await getDocs(q);
+        this.hasComment = !querySnapshot.empty;
+      }
+    });
+  }
+
+  navigateToAddComment() {
+    this.authService.getCurrentUserObservable().subscribe((user) => {
+      if (user === null) {
+        window.location.href = '/login';
+      } else {
+        window.location.href = '/newcomment?id=' + this.videogameId;
+      }
+    });
+  }
 }
