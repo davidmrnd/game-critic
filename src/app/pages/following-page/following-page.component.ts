@@ -16,11 +16,11 @@ export class FollowingPageComponent implements OnInit {
 
   constructor(private authService: AuthService, private dataService: DataService) {}
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+    await sleep(400);
     this.authService.getCurrentUserObservable().subscribe((user) => {
       if (user) {
-        
-        
         this.dataService.getFollowingComments(user.uid).subscribe((comments) => {
           const grouped = comments.reduce((acc: any, comment: any) => {
             const userId = comment.userId;
@@ -43,10 +43,13 @@ export class FollowingPageComponent implements OnInit {
 
           this.groupedComments.sort((a: any, b: any) => {
             const mostRecentA = a.comments[0].createdAt;
-            const mostRecentB = b.comments[0].createdAt;  
+            const mostRecentB = b.comments[0].createdAt;
             return mostRecentB.localeCompare(mostRecentA);
           });
         });
+      } else {
+        // Redirigir al login si no hay usuario autenticado
+        window.location.href = '/login';
       }
     });
   }
