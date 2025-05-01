@@ -5,6 +5,7 @@ import { CategoriesPageComponent } from './pages/categories-page/categories-page
 import { VideogamePageComponent } from './pages/videogameprofile-page/videogameprofile-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { UserPageComponent } from './pages/userprofile-page/userprofile-page.component';
+import { FollowingPageComponent } from './pages/following-page/following-page.component';
 
 export const routes: Routes = [
   {
@@ -30,6 +31,10 @@ export const routes: Routes = [
   {
     path: 'user',
     component: UserPageComponent,
+  },
+  {
+    path: 'following',
+    component: FollowingPageComponent,
   }
 
 ];
