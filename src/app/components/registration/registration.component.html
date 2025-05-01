@@ -9,6 +9,9 @@
       <label class="label">Nombre</label>
       <input type="text" class="input" [(ngModel)]="name" name="name" placeholder="Nombre" required>
 
+      <label class="label">Nombre de Usuario</label>
+      <input type="text" class="input" [(ngModel)]="username" name="username" placeholder="Nombre de Usuario" required>
+
       <label class="label">Contraseña</label>
       <input type="password" class="input" [(ngModel)]="password" name="password" placeholder="Contraseña" required>
 
@@ -19,12 +22,11 @@
 
       <button type="submit" class="button">Registrarse</button>
     </form>
-
     <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
 
     <div class="register-footer">
       <span class="bold-text">Si ya tienes cuenta</span>
-      <a href="signin.html"><button class="shadow-text">Iniciar sesión</button></a>
+      <a routerLink="/login"><button class="shadow-text">Iniciar sesión</button></a>
     </div>
   </div>
 </div>
