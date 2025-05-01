@@ -4,16 +4,16 @@
     <form (ngSubmit)="login()">
       <label for="email" class="label">Correo</label>
       <input type="email" class="input" [(ngModel)]="email" name="email" required placeholder="Correo">
-      
+
       <label for="password" class="label">Contraseña</label>
       <input type="password" class="input" [(ngModel)]="password" name="password" required placeholder="Contraseña">
-      
+
       <button type="submit" class="button">Iniciar sesión</button>
     </form>
     <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
     <div class="register-footer">
       <span class="bold-text">¿No tienes cuenta?</span>
-      <a href="signup.html" class="register-link">Registrarse</a>
+      <a routerLink="/registration" class="register-link"><button class="shadow-text">Registrarse</button></a>
     </div>
   </div>
 </div>

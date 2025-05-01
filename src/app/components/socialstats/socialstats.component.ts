@@ -38,7 +38,7 @@ export class SocialstatsComponent implements OnInit {
         } else {
           this.followers = 0;
         }
-  
+
         if (user.following) {
           this.following = user.following.length;
         } else {
