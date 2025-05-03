@@ -1,59 +1,81 @@
 # GameCriticAngular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.5.
+## Integrantes del grupo
+- David Miranda Campos
+- Esteban Trujillo Santana
+- Alejandro Guerra Jimenez
 
-## Development server
+## Estructura del código del proyecto web
 
-To start a local development server, run:
+El proyecto está organizado en una estructura modular basada en Angular. A continuación, se describe la funcionalidad de los principales componentes y módulos:
 
-```bash
-ng serve
-```
+### Componentes principales
+- **HeaderComponent**: Barra de navegación principal con enlaces y buscador.
+- **FooterComponent**: Contiene enlaces a redes sociales y menciones legales.
+- **WelcomeComponent**: Introducción al portal con descripción y logo.
+- **CarouselComponent**: Carrusel de videojuegos categorizados.
+- **ProfileComponent**: Información detallada de un perfil (usuario o videojuego).
+- **SocialstatsComponent**: Estadísticas sociales como seguidores y valoraciones.
+- **CommentariesComponent**: Lista de comentarios realizados por usuarios.
+- **NewcommentComponent**: Permite añadir, modificar o eliminar comentarios.
+- **RegistrationComponent**: Formulario de registro de usuarios.
+- **LoginComponent**: Permite iniciar sesión en la plataforma.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### Páginas principales
+- **HomePageComponent**: Página de inicio con carrusel de novedades.
+- **CategoriesPageComponent**: Carruseles de videojuegos por categorías.
+- **VideogamePageComponent**: Perfil de un videojuego con comentarios y valoraciones.
+- **UserPageComponent**: Perfil de usuario con estadísticas sociales.
+- **FollowingPageComponent**: Comentarios recientes de usuarios seguidos.
+- **NewcommentPageComponent**: Página para añadir o editar comentarios.
+- **LoginPageComponent**: Página de inicio de sesión.
+- **RegisterPageComponent**: Página de registro de usuarios.
 
-## Code scaffolding
+## Estructura de los datos en Firebase
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Los datos se almacenan en Firebase Firestore y están organizados en las siguientes colecciones:
 
-```bash
-ng generate component component-name
-```
+### Colecciones principales
+1. **users**
+   ```json
+   {
+     "id": "userId",
+     "email": "user@example.com",
+     "name": "Nombre del Usuario",
+     "username": "nombreUsuario",
+     "profileicon": "ruta/a/icono.png",
+     "followers": ["userId1", "userId2"],
+     "following": ["userId3", "userId4"],
+     "description": "Descripción del usuario",
+     "createdAt": "2023-01-01T00:00:00Z"
+   }
+   ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+2. **videogames**
+   ```json
+   {
+     "id": "videogameId",
+     "title": "Título del videojuego",
+     "category": ["Acción", "Aventura"],
+     "image": "ruta/a/imagen.png",
+     "description": "Descripción del videojuego",
+     "rating": 4.5
+   }
+   ```
 
-```bash
-ng generate --help
-```
+3. **comments**
+   ```json
+   {
+     "id": "commentId",
+     "userId": "userId",
+     "videogameId": "videogameId",
+     "content": "Este juego es increíble.",
+     "rating": 5,
+     "createdAt": "2023-01-01T12:00:00Z"
+   }
+   ```
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### Relaciones entre colecciones
+- **users** → **comments**: Cada usuario puede tener múltiples comentarios asociados.
+- **videogames** → **comments**: Cada videojuego puede tener múltiples comentarios asociados.
+- **users** → **users**: Los usuarios pueden seguir a otros usuarios mediante las listas `followers` y `following`.
