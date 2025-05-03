@@ -1,19 +1,21 @@
 .form-container {
   display: flex;
   justify-content: center;
-  height: 100vh;
-  padding-top: 10vh;
-
+  align-items: center; 
+  min-height: 100vh; 
+  padding: 20px; 
+  box-sizing: border-box; 
 }
 
 .form-box {
   background-color: #e0e0e0;
   width: 400px;
-  height: 375px;
+  height: auto;
   border-radius: 20px;
   padding: 40px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
+  transition: height 0.3s ease;
 }
 
 .label {
@@ -26,12 +28,18 @@
 .input {
   width: 100%;
   padding: 10px;
-  border: none;
+  border: 2px solid transparent; /* Cambiado para permitir el borde dinámico */
   border-radius: 20px;
   background-color: #b3b3b3;
+  transition: border-color 0.3s ease; /* Transición suave para el cambio de borde */
+}
+
+.input-error {
+  border-color: red; /* Rojo para campos con errores */
 }
 
 .button {
+  
   background-color: #f4d73e;
   border: none;
   border-radius: 20px;
@@ -46,7 +54,6 @@
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
-
 }
 
 .bold-text {
@@ -61,4 +68,12 @@
   margin: -5px;
   border: none;
   background-color: transparent;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 5px;
+  max-width: 100%;
+  word-wrap: break-word;
 }

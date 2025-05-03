@@ -1,14 +1,37 @@
 <div class="form-container">
   <div class="form-box">
     <h2>Iniciar sesión</h2>
-    <form (ngSubmit)="login()">
+    <form #loginForm="ngForm" (ngSubmit)="login()">
       <label for="email" class="label">Correo</label>
-      <input type="email" class="input" [(ngModel)]="email" name="email" required placeholder="Correo">
+      <input 
+        type="email" 
+        class="input" 
+        [(ngModel)]="email" 
+        name="email" 
+        required 
+        placeholder="Correo"
+        #emailInput="ngModel"
+        [class.input-error]="emailInput.invalid && emailInput.touched">
+      <div *ngIf="emailInput.invalid && emailInput.touched" class="error-message">
+        <small *ngIf="emailInput.errors?.['required']">El correo es obligatorio.</small>
+        <small *ngIf="emailInput.errors?.['email']">El formato del correo no es válido.</small>
+      </div>
 
       <label for="password" class="label">Contraseña</label>
-      <input type="password" class="input" [(ngModel)]="password" name="password" required placeholder="Contraseña">
+      <input 
+        type="password" 
+        class="input" 
+        [(ngModel)]="password" 
+        name="password" 
+        required 
+        placeholder="Contraseña"
+        #passwordInput="ngModel"
+        [class.input-error]="passwordInput.invalid && passwordInput.touched">
+      <div *ngIf="passwordInput.invalid && passwordInput.touched" class="error-message">
+        <small *ngIf="passwordInput.errors?.['required']">La contraseña es obligatoria.</small>
+      </div>
 
-      <button type="submit" class="button">Iniciar sesión</button>
+      <button type="submit" class="button" [disabled]="loginForm.invalid">Iniciar sesión</button>
     </form>
     <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
     <div class="register-footer">
