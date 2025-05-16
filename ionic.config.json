@@ -1,0 +1,7 @@
+{
+  "name": "game-critic-ionic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
