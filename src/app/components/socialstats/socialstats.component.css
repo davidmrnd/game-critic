@@ -1,0 +1,127 @@
+.profilesocialstats-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 2rem;
+  gap: clamp(2rem, 6vw, 4.5rem); /* entre 32px y 72px */
+}
+
+.stats-container {
+  display: flex;
+  justify-content: center;
+  gap: clamp(1rem, 4vw, 3.75rem); /* entre 16px y 60px */
+  margin-top: 1.25rem;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.column h1 {
+  font-size: clamp(1rem, 1.5vw, 1.25rem); /* 16px a 20px */
+  margin-bottom: 0.3rem;
+}
+
+.column p {
+  font-size: clamp(0.95rem, 1.3vw, 1.125rem); /* 15px a 18px */
+  margin: 0;
+}
+
+/* Modal overlay */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal content */
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 500px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+}
+
+.modal-content ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.modal-content li {
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.modal-content li:last-child {
+  border-bottom: none;
+}
+
+.close-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.close-button:hover {
+  background-color: #d32f2f;
+}
+
+/* Tablets */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .stats-container {
+    margin-right: 4.375rem;
+  }
+
+  .profilesocialstats-container {
+    flex-direction: row;
+  }
+}
+
+/* Móviles */
+@media (max-width: 767px) {
+  .profilesocialstats-container {
+    display: block;
+  }
+
+  .stats-container {
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  .modal-content {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .modal-content h2 {
+    font-size: 1.2rem;
+  }
+
+  .modal-content li {
+    font-size: 0.9rem;
+  }
+}

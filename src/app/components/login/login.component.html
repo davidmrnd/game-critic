@@ -1,0 +1,38 @@
+<ion-content>
+  <ion-card class="form-box">
+    <ion-card-header>
+      <ion-card-title>Iniciar sesión</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form #loginForm="ngForm" (ngSubmit)="login()">
+        <ion-item>
+          <ion-label position="stacked">Correo</ion-label>
+          <ion-input type="email" [(ngModel)]="email" name="email" required placeholder="Correo"
+            #emailInput="ngModel"></ion-input>
+        </ion-item>
+        <div *ngIf="emailInput.invalid && emailInput.touched" class="error-message">
+          <small *ngIf="emailInput.errors?.['required']">El correo es obligatorio.</small>
+          <small *ngIf="emailInput.errors?.['email']">El formato del correo no es válido.</small>
+        </div>
+
+        <ion-item>
+          <ion-label position="stacked">Contraseña</ion-label>
+          <ion-input type="password" [(ngModel)]="password" name="password" required placeholder="Contraseña"
+            #passwordInput="ngModel"></ion-input>
+        </ion-item>
+        <div *ngIf="passwordInput.invalid && passwordInput.touched" class="error-message">
+          <small *ngIf="passwordInput.errors?.['required']">La contraseña es obligatoria.</small>
+        </div>
+
+        <ion-button expand="block" type="submit" [disabled]="loginForm.invalid">Iniciar sesión</ion-button>
+      </form>
+      <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+      <div class="register-footer">
+        <span class="bold-text">¿No tienes cuenta?</span>
+        <a routerLink="/registration" class="register-link">
+          <ion-button fill="clear" class="shadow-text">Registrarse</ion-button>
+        </a>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

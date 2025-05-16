@@ -1,0 +1,34 @@
+<ion-content>
+  <ion-card class="comments-container">
+    <ion-card-content>
+      <ion-item class="comment">
+        <ion-avatar slot="start">
+          <img [src]="user?.profileicon" [alt]="user?.username">
+        </ion-avatar>
+        <ion-label>
+          <h3>{{ user?.username }}</h3>
+          <ion-textarea
+            [(ngModel)]="commentContent"
+            placeholder="Escribe tu comentario aquí..."
+            rows="5"
+            class="comment-textarea">
+          </ion-textarea>
+          <app-stars [(rating)]="rating" [interactive]="true"></app-stars>
+        </ion-label>
+      </ion-item>
+      <ion-row class="button-container">
+        <ion-col>
+          <ion-button expand="block" (click)="submitComment()">
+            {{ existingCommentId ? 'Modificar Comentario' : 'Enviar Comentario' }}
+          </ion-button>
+        </ion-col>
+        <ion-col *ngIf="existingCommentId">
+          <ion-button expand="block" color="danger" (click)="deleteComment()">
+            Eliminar Comentario
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-text color="danger" *ngIf="message">{{ message }}</ion-text>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

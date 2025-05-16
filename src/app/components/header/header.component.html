@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row class="header-container" align-items-center>
+        <ion-col size="auto" class="left-container">
+          <div class="logo-container">
+            <a routerLink="/"><img src="/assets/images/logo.webp" alt="Logo"></a>
+          </div>
+          <nav class="nav-links">
+            <a routerLink="/">Inicio</a>
+            <a routerLink="/categories">Explorar</a>
+            <a *ngIf="isLoggedIn; else redirectToLogin" routerLink="/following">Siguiendo</a>
+            <ng-template #redirectToLogin>
+              <a routerLink="/login">Siguiendo</a>
+            </ng-template>
+          </nav>
+          <ion-button fill="clear" class="menu-button" size="large" shape="round" aria-label="Menú">
+            ☰
+          </ion-button>
+        </ion-col>
+        <ion-col size="6" class="search-container">
+          <ion-searchbar placeholder="Buscar"></ion-searchbar>
+        </ion-col>
+        <ion-col size="auto" class="right-container">
+          <ng-container *ngIf="isLoggedIn; else guestButtons">
+            <a [routerLink]="['/user']" [queryParams]="{ id: userId }">
+              <ion-button class="cta-button">Mi Perfil</ion-button>
+            </a>
+          </ng-container>
+          <ng-template #guestButtons>
+            <a routerLink="/registration"><ion-button class="cta-button">Registrarse</ion-button></a>
+            <a routerLink="/login" class="login-text">Iniciar sesión</a>
+          </ng-template>
+        </ion-col>
+        <ion-col size="auto">
+          <a id="iconbutton" href="/registration">
+            <img class="profile-img" src="/assets/images/usericondefault.png" alt="Perfil">
+          </a>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>

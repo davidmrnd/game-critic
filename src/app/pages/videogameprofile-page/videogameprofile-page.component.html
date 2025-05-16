@@ -1,0 +1,22 @@
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <app-profile [type]="'videogame'"></app-profile>
+        <app-stars [rating]="averageRating"></app-stars>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" (click)="navigateToAddComment()" class="add-comment-button">
+          {{ hasComment ? 'Modificar valoración' : 'Añadir valoración' }}
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <app-commentaries [type]="'videogame'"></app-commentaries>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

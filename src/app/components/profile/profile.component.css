@@ -1,0 +1,106 @@
+.profile-container {
+  display: flex;
+  align-items: center;
+  gap: 3vw;
+  margin: 10px 0 10px clamp(20px, 5vw, 100px);
+  transition: gap 0.3s ease-in-out, margin 0.3s ease-in-out;
+}
+
+.profile-image {
+  width: 100%;
+  height: auto;
+  transition: width 0.3s ease-in-out;
+}
+
+.videogame-profile-image {
+  min-width: 250px;
+  border-radius: 10px;
+}
+
+.user-profile-image {
+  width: 225px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+}
+
+.profile-info {
+  display: flex;
+  object-fit: cover;
+  flex-direction: column;
+}
+
+.profile-title {
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  font-weight: bold;
+  margin: 0;
+}
+
+.profile-subtitle {
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  margin: 5px 0;
+}
+
+.profile-description {
+  font-size: clamp(0.9rem, 1.2vw, 1rem);
+  margin-top: 10px;
+  color: #333;
+}
+
+.videogameprofile-container {
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+  margin: 0 clamp(20px, 5vw, 100px) 50px 0;
+}
+
+.new-comment {
+  background-color: #ECD54C;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 20px;
+  margin-left: clamp(50px, 10vw, 200px);
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.new-comment:hover {
+  background-color: #d1b842;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .profile-image {
+    min-width: 180px;
+  }
+
+  .profile-container {
+    margin-left: 30px;
+  }
+}
+
+@media (max-width: 767px) {
+  .profile-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    margin: 20px;
+  }
+
+  .profile-image {
+    width: 50%;
+    align-self: center;
+    min-width: 160px;
+  }
+
+  .videogameprofile-container {
+    flex-direction: column;
+    gap: 10px;
+    margin: 0;
+  }
+
+  .new-comment {
+    margin: 10px 0 0 0;
+    align-self: center;
+  }
+}

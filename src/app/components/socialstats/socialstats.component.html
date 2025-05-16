@@ -1,0 +1,54 @@
+<ion-grid class="stats-container">
+  <ion-row>
+    <ion-col class="column">
+      <h1>Valoraciones</h1>
+      <p id="valoraciones">{{ valorations }}</p>
+    </ion-col>
+    <ion-col class="column">
+      <h1>Seguidores</h1>
+      <p id="followers" (click)="toggleFollowersDropdown()">{{ followers }}</p>
+      <ion-modal *ngIf="showFollowersDropdown" [isOpen]="showFollowersDropdown" (didDismiss)="toggleFollowersDropdown()">
+        <ng-template>
+          <ion-header>
+            <ion-toolbar>
+              <ion-title>Seguidores</ion-title>
+              <ion-buttons slot="end">
+                <ion-button (click)="toggleFollowersDropdown()">Cerrar</ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+          </ion-header>
+          <ion-content>
+            <ion-list>
+              <ion-item *ngFor="let follower of followerlist">
+                <ion-label (click)="goToUserProfile(follower.id)" class="user-link">{{ follower.name }}</ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
+    </ion-col>
+    <ion-col class="column">
+      <h1>Seguidos</h1>
+      <p id="following" (click)="toggleFollowingDropdown()">{{ following }}</p>
+      <ion-modal *ngIf="showFollowingDropdown" [isOpen]="showFollowingDropdown" (didDismiss)="toggleFollowingDropdown()">
+        <ng-template>
+          <ion-header>
+            <ion-toolbar>
+              <ion-title>Seguidos</ion-title>
+              <ion-buttons slot="end">
+                <ion-button (click)="toggleFollowingDropdown()">Cerrar</ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+          </ion-header>
+          <ion-content>
+            <ion-list>
+              <ion-item *ngFor="let following of followinglist">
+                <ion-label (click)="goToUserProfile(following.id)" class="user-link">{{ following.name }}</ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
+    </ion-col>
+  </ion-row>
+</ion-grid>

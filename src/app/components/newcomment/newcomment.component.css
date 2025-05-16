@@ -1,0 +1,141 @@
+.comments-container {
+  width: 80%;
+  margin: 50px auto;;
+  padding: 0 1rem;
+}
+
+.comment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  border-bottom: 1px solid #eee;
+  flex-wrap: wrap;
+}
+
+.user {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  flex: 1;
+}
+
+.profile-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.info h3 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.submit-button {
+  margin-top: 1rem;
+  padding: 10px 20px;
+  background-color: #ECD54C;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.submit-button:hover {
+  background-color: #d1b842;
+}
+
+.button-container {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.delete-button {
+  margin-top: 1rem;
+  padding: 10px 20px;
+  background-color: #ff4d4d;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.delete-button:hover {
+  background-color: #cc0000;
+}
+
+.error-message {
+  margin-top: 1rem;
+  color: red; /* Texto rojo */
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.input-stars-container {
+  display: flex;
+  gap: 150px;
+  width: 200%;
+  font-size: 14px;
+  resize: vertical;
+  min-height: 45px;
+  max-height: 300px;
+  line-height: 1.5;
+}
+
+.comment-textarea {
+  width: 55%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  resize: vertical;
+  min-height: 45px;
+  max-height: 300px;
+  line-height: 1.5;
+}
+
+@media (max-width: 1023px) {
+  .comment {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .comment-input {
+    width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .profile-image {
+    width: 40px;
+    height: 40px;
+  }
+
+  .comments-container {
+    margin: auto 0;
+  }
+
+  .info h3 {
+    font-size: 0.95rem;
+  }
+}

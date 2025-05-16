@@ -1,0 +1,26 @@
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <app-profile [type]="'user'"></app-profile>
+        <app-socialstats></app-socialstats>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div *ngIf="!isCurrentUserProfile">
+          <ion-button *ngIf="!isFollowing" (click)="followUser()" class="follow-button">Seguir</ion-button>
+          <ion-button *ngIf="isFollowing" (click)="unfollowUser()" color="danger" class="unfollow-button">Dejar de seguir</ion-button>
+        </div>
+        <div *ngIf="isCurrentUserProfile">
+          <ion-button (click)="logout()" color="danger" class="logout-button">Cerrar sesión</ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <app-commentaries [type]="'user'"></app-commentaries>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
