@@ -3,14 +3,13 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { FavoritesService } from '../../services/favorites.service';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
-import { IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonRow, IonCol, IonGrid, IonButton, IonAvatar } from "@ionic/angular/standalone";
+import { IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonRow, IonCol, IonGrid, IonAvatar } from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-favorites-page',
   templateUrl: './following-page.component.html',
   styleUrls: ['./following-page.component.css'],
-  imports: [IonButton, IonGrid, IonCard, IonCol, IonRow, IonCardContent, IonCardTitle, IonAvatar, IonCardHeader, IonContent, CommonModule, RouterLink],
+  imports: [IonGrid, IonCard, IonCol, IonRow, IonCardContent, IonCardTitle, IonAvatar, IonCardHeader, IonContent, CommonModule],
 })
 export class FollowingPageComponent implements OnInit {
   favorites: any[] = [];

@@ -43,6 +43,25 @@ app-commentaries {
   background-color: #d1b842;
 }
 
+.favorite-icon-img {
+  width: 4.2rem;
+  height: 4.2rem;
+  filter: grayscale(1) brightness(0.8);
+  transition: filter 0.2s;
+}
+
+.favorite-icon-btn.active .favorite-icon-img,
+.favorite-icon-img.active {
+  /* El relleno de la imagen se tiñe de amarillo */
+  filter:
+    grayscale(0)
+    brightness(1.1)
+    sepia(1)
+    saturate(8)
+    hue-rotate(-30deg)
+    drop-shadow(0 0 6px #FFD600);
+}
+
 @media (max-width:767px){
 
   main {

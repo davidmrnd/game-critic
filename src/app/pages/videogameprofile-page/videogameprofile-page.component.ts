@@ -7,7 +7,7 @@ import { StarsComponent } from '../../components/stars/stars.component';
 import { CommentariesComponent } from '../../components/commentaries/commentaries.component';
 import { AuthService } from '../../services/auth.service';
 import { Firestore, collection, query, where, getDocs } from '@angular/fire/firestore';
-import { IonContent, IonButton, IonRow, IonCol, IonGrid } from "@ionic/angular/standalone";
+import { IonContent, IonButton, IonRow, IonCol, IonGrid, IonIcon } from "@ionic/angular/standalone";
 import { FavoritesService } from '../../services/favorites.service';
 
 @Component({
@@ -15,7 +15,7 @@ import { FavoritesService } from '../../services/favorites.service';
   templateUrl: './videogameprofile-page.component.html',
   styleUrls: ['./videogameprofile-page.component.css'],
   standalone: true,
-  imports: [IonGrid, IonCol, IonRow, IonButton, IonContent, 
+  imports: [IonIcon, IonGrid, IonCol, IonRow, IonButton, IonContent, 
     CommonModule,
     ProfileComponent,
     StarsComponent,
@@ -30,6 +30,7 @@ export class VideogamePageComponent implements OnInit {
   hasComment: boolean = false;
   isFavorite: boolean = false;
   currentUserId: string = '';
+  videogameTitle: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -46,6 +47,12 @@ export class VideogamePageComponent implements OnInit {
         this.loadComments();
         this.checkIfUserHasComment();
         this.checkFavorite();
+        // Obtener el título del videojuego
+        this.dataService.getVideogameById(this.videogameId).subscribe(game => {
+          if (game) {
+            this.videogameTitle = game.title;
+          }
+        });
       }
     });
   }
@@ -93,6 +100,7 @@ export class VideogamePageComponent implements OnInit {
     });
   }
 
+  // El icono de estrella se colorea según el valor de isFavorite
   async toggleFavorite() {
     if (!this.currentUserId || !this.videogameId) return;
     if (this.isFavorite) {
