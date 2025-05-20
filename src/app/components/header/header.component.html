@@ -1,41 +1,45 @@
 <ion-header>
   <ion-toolbar>
     <ion-grid>
-      <ion-row class="header-container" align-items-center>
-        <ion-col size="auto" class="left-container">
-          <div class="logo-container">
-            <a routerLink="/"><img src="/assets/images/logo.webp" alt="Logo"></a>
-          </div>
-          <nav class="nav-links">
-            <a routerLink="/">Inicio</a>
-            <a routerLink="/categories">Explorar</a>
-            <a *ngIf="isLoggedIn; else redirectToLogin" routerLink="/following">Siguiendo</a>
-            <ng-template #redirectToLogin>
-              <a routerLink="/login">Siguiendo</a>
-            </ng-template>
-          </nav>
-          <ion-button fill="clear" class="menu-button" size="large" shape="round" aria-label="Menú">
+      <ion-row class="header-mobile-row" align-items-center>
+        <ion-col size="auto">
+          <ion-button fill="clear" class="menu-button" size="large" shape="round" aria-label="Menú" (click)="showMenu = !showMenu">
             ☰
           </ion-button>
         </ion-col>
-        <ion-col size="6" class="search-container">
+        <ion-col>
           <ion-searchbar placeholder="Buscar"></ion-searchbar>
         </ion-col>
-        <ion-col size="auto" class="right-container">
-          <ng-container *ngIf="isLoggedIn; else guestButtons">
-            <a [routerLink]="['/user']" [queryParams]="{ id: userId }">
-              <ion-button class="cta-button">Mi Perfil</ion-button>
+        <ion-col size="auto" class="profile-col">
+          <a *ngIf="isLoggedIn; else defaultProfile" [routerLink]="['/user']" [queryParams]="{ id: userId }">
+            <img [src]="userProfileIcon || '/assets/images/usericondefault.png'" alt="Perfil" class="profile-img" />
+          </a>
+          <ng-template #defaultProfile>
+            <a routerLink="/login">
+              <img src="/assets/images/usericondefault.png" alt="Perfil" class="profile-img" />
             </a>
-          </ng-container>
-          <ng-template #guestButtons>
-            <a routerLink="/registration"><ion-button class="cta-button">Registrarse</ion-button></a>
-            <a routerLink="/login" class="login-text">Iniciar sesión</a>
           </ng-template>
         </ion-col>
-        <ion-col size="auto">
-          <a id="iconbutton" href="/registration">
-            <img class="profile-img" src="/assets/images/usericondefault.png" alt="Perfil">
-          </a>
+      </ion-row>
+      <ion-row *ngIf="showMenu" class="mobile-menu-row">
+        <ion-col size="12">
+          <nav class="mobile-nav-links">
+            <a routerLink="/" (click)="showMenu = false">Inicio</a>
+            <a routerLink="/categories" (click)="showMenu = false">Explorar</a>
+            <a *ngIf="isLoggedIn; else redirectToLogin" routerLink="/following" (click)="showMenu = false">Siguiendo</a>
+            <ng-template #redirectToLogin>
+              <a routerLink="/login" (click)="showMenu = false">Siguiendo</a>
+            </ng-template>
+            <ng-container *ngIf="isLoggedIn; else guestButtons">
+              <a [routerLink]="['/user']" [queryParams]="{ id: userId }" (click)="showMenu = false">
+                Mi Perfil
+              </a>
+            </ng-container>
+            <ng-template #guestButtons>
+              <a routerLink="/registration" (click)="showMenu = false">Registrarse</a>
+              <a routerLink="/login" (click)="showMenu = false">Iniciar sesión</a>
+            </ng-template>
+          </nav>
         </ion-col>
       </ion-row>
     </ion-grid>

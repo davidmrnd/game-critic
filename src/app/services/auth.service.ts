@@ -15,7 +15,7 @@ export class AuthService {
     });
   }
 
-  async register(email: string, password: string, name: string, username: string) {
+  async register(email: string, password: string, name: string, username: string, profileImage: string) {
     const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
     const user = userCredential.user;
 
@@ -24,7 +24,7 @@ export class AuthService {
       email,
       name,
       username,
-      profileicon: 'assets/images/usericondefault.png',
+      profileicon: profileImage,
       followers: [],
       following: [],
       description: '',

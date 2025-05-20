@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { IonContent, IonCol, IonGrid, IonRow } from "@ionic/angular/standalone";
+import {IonCol, IonGrid, IonRow } from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-welcome',
-  imports: [IonRow, IonGrid, IonCol, IonContent, ],
+  imports: [IonRow, IonGrid, IonCol, ],
   templateUrl: './welcome.component.html',
   styleUrl: './welcome.component.css'
 })

@@ -16,13 +16,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userName: string | null = null;
   private userSubscription: Subscription | null = null;
   userId: any|string;
+  showMenu: boolean = false;
+  userProfileIcon: string | null = null;
 
   constructor(private authService: AuthService) {}
 
   ngOnInit() {
-    this.userSubscription = this.authService.getCurrentUserObservable().subscribe((user) => {
+    this.userSubscription = this.authService.getCurrentUserObservable().subscribe((user: any) => {
       this.isLoggedIn = !!user;
       this.userId = user?.uid || null;
+      this.userProfileIcon = user?.profileicon || null;
     });
   }
 
@@ -30,6 +33,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authService.logout().then(() => {
       this.isLoggedIn = false;
       this.userName = null;
+      this.showMenu = false;
+      this.userProfileIcon = null;
     });
   }
 

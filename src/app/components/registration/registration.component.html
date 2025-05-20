@@ -39,6 +39,14 @@
           <small *ngIf="passwordInput.errors?.['minlength']">La contraseña debe tener al menos 6 caracteres.</small>
         </div>
 
+        <ion-item>
+          <ion-label position="stacked">Imagen de perfil</ion-label>
+          <input type="file" accept="image/*" (change)="onImageSelected($event)" />
+        </ion-item>
+        <div *ngIf="profileImage" style="text-align:center; margin: 10px 0;">
+          <img [src]="profileImage" alt="Previsualización" style="max-width: 100px; max-height: 100px; border-radius: 50%;" />
+        </div>
+
         <ion-item lines="none">
           <ion-checkbox slot="start" [(ngModel)]="termsAccepted" name="termsAccepted" required></ion-checkbox>
           <ion-label>
@@ -55,7 +63,7 @@
       </form>
       <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
       <div class="register-footer">
-        <span class="bold-text">Si ya tienes cuenta</span>
+        <span class="bold-text">Si ya tienes cuenta:</span>
         <a routerLink="/login"><ion-button fill="clear" class="shadow-text">Iniciar sesión</ion-button></a>
       </div>
     </ion-card-content>

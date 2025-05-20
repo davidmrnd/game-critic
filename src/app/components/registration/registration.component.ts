@@ -19,6 +19,7 @@ export class RegistrationComponent {
   username: string = '';
   errorMessage: string = '';
   termsAccepted: boolean = false;
+  profileImage: string = '';
 
   constructor(private authService: AuthService) {}
 
@@ -33,7 +34,8 @@ export class RegistrationComponent {
       return;
     }
 
-    this.authService.register(this.email, this.password, this.name, this.username)
+    // Pasa la imagen al servicio de registro si es necesario
+    this.authService.register(this.email, this.password, this.name, this.username, this.profileImage)
       .then(() => {
         document.body.innerHTML = '<div style="font-size: 8rem; text-align: center;">✅</div>';
         setTimeout(() => {
@@ -44,6 +46,7 @@ export class RegistrationComponent {
         this.password = '';
         this.name = '';
         this.username = '';
+        this.profileImage = '';
         this.termsAccepted = false;
         this.errorMessage = '';
       })
@@ -54,5 +57,15 @@ export class RegistrationComponent {
 
   onPoliciesClick() {
     termsAccepted: true;
+  }
+
+  onImageSelected(event: any) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      this.profileImage = e.target.result;
+    };
+    reader.readAsDataURL(file);
   }
 }

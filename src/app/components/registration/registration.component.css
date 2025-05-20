@@ -94,3 +94,17 @@
   max-width: 100%;
   word-wrap: break-word;
 }
+
+@media (max-width: 768px) {
+  .form-box {
+    width: 85vw;
+    min-width: unset;
+    max-width: 100vw;
+    padding: 0px;
+    border-radius: 12px;
+  }
+  .register-footer {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
