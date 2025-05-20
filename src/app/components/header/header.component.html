@@ -11,9 +11,11 @@
           <ion-searchbar placeholder="Buscar"></ion-searchbar>
         </ion-col>
         <ion-col size="auto" class="profile-col">
-          <a *ngIf="isLoggedIn; else defaultProfile" [routerLink]="['/user']" [queryParams]="{ id: userId }">
-            <img [src]="userProfileIcon || '/assets/images/usericondefault.png'" alt="Perfil" class="profile-img" />
-          </a>
+          <ng-container *ngIf="isLoggedIn; else defaultProfile">
+            <a [routerLink]="['/user']" [queryParams]="{ id: userId }">
+              <img class="profile-img" [src]="userProfileIcon" alt="Perfil">
+            </a>
+          </ng-container>
           <ng-template #defaultProfile>
             <a routerLink="/login">
               <img src="/assets/images/usericondefault.png" alt="Perfil" class="profile-img" />
@@ -26,9 +28,9 @@
           <nav class="mobile-nav-links">
             <a routerLink="/" (click)="showMenu = false">Inicio</a>
             <a routerLink="/categories" (click)="showMenu = false">Explorar</a>
-            <a *ngIf="isLoggedIn; else redirectToLogin" routerLink="/following" (click)="showMenu = false">Siguiendo</a>
+            <a *ngIf="isLoggedIn; else redirectToLogin" routerLink="/following" (click)="showMenu = false">Favoritos</a>
             <ng-template #redirectToLogin>
-              <a routerLink="/login" (click)="showMenu = false">Siguiendo</a>
+              <a routerLink="/login" (click)="showMenu = false">Favoritos</a>
             </ng-template>
             <ng-container *ngIf="isLoggedIn; else guestButtons">
               <a [routerLink]="['/user']" [queryParams]="{ id: userId }" (click)="showMenu = false">

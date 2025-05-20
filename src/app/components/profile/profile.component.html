@@ -1,13 +1,15 @@
 <ion-card class="profile-container" *ngIf="data && (data.title || data.name)">
-  <ion-card-header>
-    <ion-avatar>
+  <div class="profile-header-row">
+    <ion-avatar class="profile-avatar">
       <img [src]="data.imageprofile || data.profileicon" [alt]="data.title || data.name"
         [class.videogame-profile-image]="type === 'videogame'"
         [class.user-profile-image]="type === 'user'">
     </ion-avatar>
-    <ion-card-title>{{ data.title || data.name }}</ion-card-title>
-    <ion-card-subtitle>{{ data.subtitle || data.username }}</ion-card-subtitle>
-  </ion-card-header>
+    <div class="profile-info-block">
+      <ion-card-title class="profile-title">{{ data.title || data.name }}</ion-card-title>
+      <ion-card-subtitle class="profile-subtitle">{{ data.subtitle || data.username }}</ion-card-subtitle>
+    </div>
+  </div>
   <ion-card-content>
     <p class="profile-description" *ngIf="data.description">{{ data.description }}</p>
   </ion-card-content>

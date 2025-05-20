@@ -1,4 +1,3 @@
-
 /* Core CSS required for Ionic components to work properly */
 @import "@ionic/angular/css/core.css";
 
@@ -13,3 +12,16 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+/* Sobrescribe el color danger de Ionic */
+.ion-color-danger,
+.ion-color-danger > .button-native,
+.ion-color-danger[ion-button] {
+  --ion-color-base: #f44336 !important; /* o el color que prefieras */
+  --ion-color-contrast: #fff !important;
+  --ion-color-shade: #d32f2f !important;
+  --ion-color-tint: #ff6659 !important;
+  background: var(--ion-color-base) !important;
+  color: var(--ion-color-contrast) !important;
+  border: none !important;
+}

@@ -4,6 +4,9 @@
       <ion-col>
         <app-profile [type]="'videogame'"></app-profile>
         <app-stars [rating]="averageRating"></app-stars>
+        <ion-button expand="block" (click)="toggleFavorite()" color="warning" style="margin-top:10px;">
+          {{ isFavorite ? 'Quitar de favoritos' : 'Guardar como favorito' }}
+        </ion-button>
       </ion-col>
     </ion-row>
     <ion-row>

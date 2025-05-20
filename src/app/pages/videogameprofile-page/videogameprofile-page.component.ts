@@ -8,6 +8,7 @@ import { CommentariesComponent } from '../../components/commentaries/commentarie
 import { AuthService } from '../../services/auth.service';
 import { Firestore, collection, query, where, getDocs } from '@angular/fire/firestore';
 import { IonContent, IonButton, IonRow, IonCol, IonGrid } from "@ionic/angular/standalone";
+import { FavoritesService } from '../../services/favorites.service';
 
 @Component({
   selector: 'app-videogameprofile-page',
@@ -27,12 +28,15 @@ export class VideogamePageComponent implements OnInit {
   videogameId!: string;
   userId: string = '';
   hasComment: boolean = false;
+  isFavorite: boolean = false;
+  currentUserId: string = '';
 
   constructor(
     private route: ActivatedRoute,
     private dataService: DataService,
     private authService: AuthService,
-    private firestore: Firestore
+    private firestore: Firestore,
+    private favoritesService: FavoritesService
   ) {}
 
   ngOnInit(): void {
@@ -41,6 +45,7 @@ export class VideogamePageComponent implements OnInit {
       if (this.videogameId) {
         this.loadComments();
         this.checkIfUserHasComment();
+        this.checkFavorite();
       }
     });
   }
@@ -77,6 +82,31 @@ export class VideogamePageComponent implements OnInit {
         this.hasComment = !querySnapshot.empty;
       }
     });
+  }
+
+  async checkFavorite() {
+    this.authService.getCurrentUserObservable().subscribe(async (user) => {
+      if (user && this.videogameId) {
+        this.currentUserId = user.uid;
+        this.isFavorite = await this.favoritesService.isFavorite(user.uid, this.videogameId);
+      }
+    });
+  }
+
+  async toggleFavorite() {
+    if (!this.currentUserId || !this.videogameId) return;
+    if (this.isFavorite) {
+      await this.favoritesService.removeFavorite(this.currentUserId, this.videogameId);
+      this.isFavorite = false;
+    } else {
+      // Obtén los datos del videojuego para guardarlos en favoritos
+      this.dataService.getVideogameById(this.videogameId).subscribe(async (game) => {
+        if (game) {
+          await this.favoritesService.addFavorite(this.currentUserId, game);
+          this.isFavorite = true;
+        }
+      });
+    }
   }
 
   navigateToAddComment() {

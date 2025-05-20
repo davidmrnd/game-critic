@@ -61,13 +61,18 @@ app-commentaries {
   background-color: #f44336;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 10px 32px;
   border-radius: 20px;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-left: 10.5rem;
+  display: block;
+  margin: 32px auto 0 auto;
+  width: auto;           /* No ocupar todo el ancho */
+  min-width: 140px;      /* Opcional: ancho mínimo para buen aspecto */
+  max-width: 220px;      /* Opcional: ancho máximo */
+  text-align: center;
 }
 
 .logout-button:hover {

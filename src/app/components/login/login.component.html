@@ -7,8 +7,14 @@
       <form #loginForm="ngForm" (ngSubmit)="login()">
         <ion-item>
           <ion-label position="stacked">Correo</ion-label>
-          <ion-input type="email" [(ngModel)]="email" name="email" required placeholder="Correo"
-            #emailInput="ngModel"></ion-input>
+          <ion-input
+            type="email"
+            [(ngModel)]="email"
+            name="email"
+            required
+            placeholder="Correo"
+            #emailInput="ngModel">
+          </ion-input>
         </ion-item>
         <div *ngIf="emailInput.invalid && emailInput.touched" class="error-message">
           <small *ngIf="emailInput.errors?.['required']">El correo es obligatorio.</small>
@@ -17,8 +23,14 @@
 
         <ion-item>
           <ion-label position="stacked">Contraseña</ion-label>
-          <ion-input type="password" [(ngModel)]="password" name="password" required placeholder="Contraseña"
-            #passwordInput="ngModel"></ion-input>
+          <ion-input
+            type="password"
+            [(ngModel)]="password"
+            name="password"
+            required
+            placeholder="Contraseña"
+            #passwordInput="ngModel">
+          </ion-input>
         </ion-item>
         <div *ngIf="passwordInput.invalid && passwordInput.touched" class="error-message">
           <small *ngIf="passwordInput.errors?.['required']">La contraseña es obligatoria.</small>

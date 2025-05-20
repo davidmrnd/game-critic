@@ -1,48 +1,26 @@
 <ion-content>
-  <ion-grid class="comments-container">
+  <ion-grid class="favorites-container">
     <ion-row>
       <ion-col size="12">
-        <h2>comentarios de las personas que sigues</h2>
+        <h2>Mis videojuegos favoritos</h2>
       </ion-col>
     </ion-row>
-    <ion-row *ngFor="let user of groupedComments">
+    <ion-row *ngIf="favorites.length === 0">
+      <ion-col size="12" style="text-align:center;">
+        <p>No tienes videojuegos guardados en favoritos.</p>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let game of favorites">
       <ion-col size="12">
-        <ion-card>
-          <ion-card-header class="carousel-title">
-            <ion-avatar>
-              <a [routerLink]="['/user']" [queryParams]="{ id: user.id }">
-                <img [src]="user.profileicon" [alt]="user.username" class="profileuser-image">
-              </a>
+        <ion-card (click)="goToVideogameDetail(game.id)" style="cursor:pointer;">
+          <ion-card-header>
+            <ion-avatar slot="start">
+              <img [src]="game.imageprofile" [alt]="game.title" />
             </ion-avatar>
-            <a [routerLink]="['/user']" [queryParams]="{ id: user.id }">
-              <ion-card-title>{{ user.username }}</ion-card-title>
-            </a>
+            <ion-card-title>{{ game.title }}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <div class="carousel-container">
-              <div class="carousel">
-                <div class="carousel-track" [attr.data-username]="user.username">
-                  <div class="carousel-slide" *ngFor="let comment of user.comments">
-                    <div class="comment-columns">
-                      <div class="comment-text-stars">
-                        <p class="comment-content">{{ comment.content }}</p>
-                        <app-stars [rating]="comment.rating"></app-stars>
-                        <p class="comment-date">{{ comment.createdAt | date: 'dd/MM/yyyy, HH:mm' }}</p>
-                      </div>
-                      <div class="comment-image">
-                        <a [routerLink]="['/videogame']" [queryParams]="{ id: comment.videogame?.id }">
-                          <img [src]="comment.videogame?.imageprofile" [alt]="comment.videogame?.title" class="carousel-image">
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="carousel-buttons">
-                <ion-button fill="clear" class="carousel-button prev-button" (click)="moveCarousel(user.username, 'prev')"><</ion-button>
-                <ion-button fill="clear" class="carousel-button next-button" (click)="moveCarousel(user.username, 'next')">></ion-button>
-              </div>
-            </div>
+            <p>{{ game.description }}</p>
           </ion-card-content>
         </ion-card>
       </ion-col>

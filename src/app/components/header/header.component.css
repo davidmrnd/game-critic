@@ -66,6 +66,54 @@ ion-searchbar {
   color: #d1b842;
 }
 
+.user-dropdown-container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.user-dropdown {
+  position: absolute;
+  right: 0;
+  top: 48px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  min-width: 160px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0;
+}
+
+.user-dropdown a,
+.user-dropdown button {
+  padding: 10px 20px;
+  text-align: left;
+  background: none;
+  border: none;
+  width: 100%;
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+  outline: none;
+  transition: background 0.2s;
+}
+
+.user-dropdown a:hover,
+.user-dropdown button:hover {
+  background: #f7f7c2;
+  color: #d1b842;
+}
+
+.logout-dropdown-btn.logout-red {
+  color: #f44336;
+}
+
+.user-dropdown i {
+  margin-right: 8px;
+}
+
 @media (min-width: 768px) {
   .header-mobile-row,
   .mobile-menu-row {

@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { DataService } from '../../services/data.service'; // añadido
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -18,14 +19,31 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userId: any|string;
   showMenu: boolean = false;
   userProfileIcon: string | null = null;
+  showUserDropdown: boolean = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private dataService: DataService) {}
 
   ngOnInit() {
     this.userSubscription = this.authService.getCurrentUserObservable().subscribe((user: any) => {
       this.isLoggedIn = !!user;
       this.userId = user?.uid || null;
-      this.userProfileIcon = user?.profileicon || null;
+
+      if (user && user.uid) {
+        const localImage = localStorage.getItem(`profile-image-${user.uid}`);
+        if (localImage) {
+          this.userProfileIcon = localImage;
+        } else {
+          this.dataService.getUsersById(user.uid).subscribe((userData: any) => {
+            if (userData && userData.profileicon) {
+              this.userProfileIcon = userData.profileicon;
+            } else {
+              this.userProfileIcon = '/assets/images/usericondefault.png';
+            }
+          });
+        }
+      } else {
+        this.userProfileIcon = '/assets/images/usericondefault.png';
+      }
     });
   }
 
@@ -35,7 +53,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.userName = null;
       this.showMenu = false;
       this.userProfileIcon = null;
+      this.closeUserDropdown();
     });
+  }
+
+  toggleUserDropdown() {
+    this.showUserDropdown = !this.showUserDropdown;
+  }
+
+  closeUserDropdown() {
+    this.showUserDropdown = false;
   }
 
   ngOnDestroy() {

@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { FormsModule } from '@angular/forms'; // Importación necesaria para ngModel
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonItem, IonLabel, IonButton } from "@ionic/angular/standalone";
+import { IonicModule } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
-  standalone: true, // Indica que es un componente independiente
-  imports: [IonButton, IonLabel, IonItem, IonCardContent, IonCardTitle, IonCardHeader, IonCard, IonContent, FormsModule, CommonModule, RouterModule], // Asegúrate de incluir FormsModule aquí
+  standalone: true,
+  imports: [
+    IonicModule, FormsModule, CommonModule, RouterModule
+  ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
@@ -20,6 +22,7 @@ export class LoginComponent {
   constructor(private authService: AuthService) {}
 
   login() {
+    console.log('Intentando iniciar sesión con:', this.email, this.password);
     if (!this.email || !this.password) {
       this.errorMessage = 'Por favor, completa todos los campos.';
       return;
